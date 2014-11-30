@@ -42,7 +42,10 @@ local payload_keep = read_config("payload_keep")
 local msg = {
     Type = "stats.loadavg",
     Message = nil,
-    Values = nil
+    Values = nil,
+    Type = nil,
+    Timestamp = nil,
+    Serialnum = nil
 }
 
 function process_message()
