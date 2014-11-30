@@ -41,12 +41,12 @@ local payload_keep = read_config("payload_keep")
 
 local msg = {
     Type = "stats.loadavg",
-    Payload = nil,
-    Fields = nil
+    Message = nil,
+    Values = nil
 }
 
 function process_message()
-    local data = read_message("Payload")
+    local data = read_message("Messages")
     msg.Fields = grammar:match(data)
 
     if not msg.Fields then
@@ -57,7 +57,10 @@ function process_message()
         msg.Payload = data
     end
 
-    msg.Fields.FilePath = read_message("Fields[FilePath]")
+    msg.Values.Path = read_message("Values[Path]")
+    msg.Values.Pid = read_message("Values[Pid]")
+    msg.Values.Coom = read_message("Values[Coom]")
+    msg.Values.Dev = read_message("Values[Dev]")
     inject_message(msg)
     return 0
 end
