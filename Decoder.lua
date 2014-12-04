@@ -67,7 +67,11 @@ function process_message()
     if not matches then
         --return 0 to not propogate errors to heka's log.
         --return a message with IGNORE type to not match heka's message matcher
-        inject_message(msg)
+        if pcall(inject_message(msg)) then
+            print("Success")
+        else
+	        print("Failure")
+        end
         return 0 
     end
 
@@ -102,6 +106,14 @@ function process_message()
     msg.Fields['egid'] = matches[25]
     msg.Fields['ppid'] = matches[26]
     msg.Fields['exe'] = matches[27]
-    inject_message(msg)
+    
+    
+    if pcall(inject_message(msg)) then
+        inject_message(msg)
+        --return 0
+    else
+        print("Failure")
+        --return 0
+    end
     return 0
 end
