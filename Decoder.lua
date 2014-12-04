@@ -75,12 +75,33 @@ function process_message()
     msg['Type'] = read_config('type')
     msg['Logger'] = 'heka'
     msg['Severity'] = 'INFO'
-    msg.Fields['exit'] = matches[0]
-    msg.Fields['timestamp'] = matches[1]
-    msg.Fields['hostname'] = matches[2]
-    msg.Fields['program'] = matches[3]
-    msg.Fields['processid'] = matches[4]
---    msg.Fields['debug'] = matches
+    msg.Fields['exit'] = matches[1]
+    msg.Fields['euid'] = matches[2]
+    msg.Fields['pid'] = matches[3]
+    msg.Fields['arch'] = matches[4]
+    msg.Fields['syscall'] = matches[5]
+    msg.Fields['sgid'] = matches[6]
+    msg.Fields['key'] = matches[7]
+    msg.Fields['gid'] = matches[8]
+    msg.Fields['a3'] = matches[9]
+    msg.Fields['a2'] = matches[10]
+    msg.Fields['a1'] = matches[11]
+    msg.Fields['a0'] = matches[12]
+    msg.Fields['tty'] = matches[13]
+    msg.Fields['ad_adlkj'] = matches[14]
+    msg.Fields['fsuid'] = matches[15]
+    msg.Fields['a-ds'] = matches[16]
+    msg.Fields['auid'] = matches[17]
+    msg.Fields['comm'] = matches[18]
+    msg.Fields['suid'] = matches[19]
+    msg.Fields['items'] = matches[20]
+    msg.Fields['uid'] = matches[21]
+    msg.Fields['success'] = matches[22]
+    msg.Fields['ses'] = matches[23]
+    msg.Fields['fsgid'] = matches[24]
+    msg.Fields['egid'] = matches[25]
+    msg.Fields['ppid'] = matches[26]
+    msg.Fields['exe'] = matches[27]
     inject_message(msg)
     return 0
 end
